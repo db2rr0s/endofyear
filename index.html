@@ -1,0 +1,39 @@
+<html>
+<head>
+<title>Phonegap Test</title>
+<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+
+<style>
+
+body {
+background-color: #ccc
+}
+
+</style>
+
+</head>
+<body>
+<h1>Phonegap Test</h1>
+<button id="btnClick">Mostrar</button>
+<button id="btnClear">Limpar</button>
+<div id="result"></div>
+
+<script>
+
+$(document).ready(function(){
+
+	$('#btnClick').click(function(){
+		
+		$('#result').prepend(Date() + '<br>')
+
+	});
+
+	$('#btnClear').click(function(){
+		$('#result').html("");
+	});
+
+});
+
+</script>
+</body>
+</html>
