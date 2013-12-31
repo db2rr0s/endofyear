@@ -1,4 +1,0 @@
-endofyear
-=========
-
-phonegap test
