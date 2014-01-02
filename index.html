@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Phonegap Test</title>
+<title>Litecoin - Watch</title>
 <script src="js/zepto.min.js"></script>
 
 <style>
@@ -13,9 +13,8 @@ background-color: #ccc
 
 </head>
 <body>
-<h1>Phonegap Test</h1><span>@dbarros</span><br>
-<button id="btnClick">Mostrar</button>
-<button id="btnClear">Limpar</button>
+<h1>Litecoin - Watch</h1><span>@dbarros</span><br>
+<button id="btnClick">Atualizar</button>
 <div id="result"></div>
 
 <script>
@@ -24,14 +23,18 @@ $(document).ready(function(){
 
 	$('#btnClick').click(function(){
 		
-		$('#result').prepend(Date() + '<br>')
+		$.ajax({
+			type: 'GET',
+			url: 'http://www.mercadobitcoin.com.br/api/ticker_litecoin/',
+			success: function(data){
+				var ticket = JSON.parse(data).ticker
+				$('#result').html('<h4>Bitcoin - Preço</h4><b>Último:</b>&nbsp;R$ '+ ticket.last+ '<br><b>Compra:</b>&nbsp;R$ '+ ticket.buy+ '<br><b>Venda:</b>&nbsp;R$ '+ ticket.sell)	
+			},
+			error: function(xhr, type){
+				$('#result').prepend(Date() + ' - Erro ao atualizar<br>')
+			}})
 
 	});
-
-	$('#btnClear').click(function(){
-		$('#result').html("");
-	});
-
 });
 
 </script>
