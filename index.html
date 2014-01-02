@@ -1,6 +1,6 @@
 <html>
 <head>
-<meta charset="utf8">
+<meta charset="iso-8859-1">
 <title>Litecoin - Watch</title>
 <script src="js/zepto.min.js"></script>
 
@@ -33,7 +33,9 @@ update = function(){
         url: 'http://www.mercadobitcoin.com.br/api/ticker_litecoin/',
         success: function(data){
 			var ticket = JSON.parse(data).ticker
-            $('#result').html('<h4>litecoin - Preço</h4><b>Último:</b>&nbsp;R$ '+ ticket.last+ '<br><b>Compra:</b>&nbsp;R$ '+ ticket.buy+ '<br><b>Venda:</b>&nbsp;R$ '+ ticket.sell)
+			var dia = Date()
+			dia.getDate() + '/' + (dia.getMonth() + 1) + '/' + dia.getFullYear() + ' ' + dia.getHours() + ':' + dia.getMinutes() + ':' + dia.getSeconds()
+            $('#result').html('<h4>Litecoin - preço em ' + dia + '</h4><b>Último:</b>&nbsp;R$ '+ ticket.last+ '<br><b>Compra:</b>&nbsp;R$ '+ ticket.buy+ '<br><b>Venda:</b>&nbsp;R$ '+ ticket.sell)
         },
         error: function(xhr, type){
 			$('#result').prepend(Date() + ' - Erro ao atualizar<br>')
