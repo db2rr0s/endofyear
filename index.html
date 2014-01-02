@@ -1,5 +1,6 @@
 <html>
 <head>
+<meta charset="utf8">
 <title>Litecoin - Watch</title>
 <script src="js/zepto.min.js"></script>
 
@@ -9,32 +10,49 @@ body {
 background-color: #ccc
 }
 
+.label{
+font-size: xx-large;
+}
+
 </style>
 
 </head>
 <body>
-<h1>Litecoin - Watch</h1><span>@dbarros</span><br>
+<img src="img/ltc-logo.png" alt="ltc"/>
+<span class="label">Litecoin - Watch</span>
+<span>@dbarros</span><br>
 <button id="btnClick">Atualizar</button>
 <div id="result"></div>
 
 <script>
 
+var ctrl;
+update = function(){
+	$.ajax({
+		type: 'GET',
+        url: 'http://www.mercadobitcoin.com.br/api/ticker_litecoin/',
+        success: function(data){
+			var ticket = JSON.parse(data).ticker
+            $('#result').html('<h4>litecoin - Preço</h4><b>▒~Zltimo:</b>&nbsp;R$ '+ ticket.last+ '<br><b>Compra:</b>&nbsp;R$ '+ ticket.buy+ '<br><b>Venda:</b>&nbsp;R$ '+ ticket.sell)
+        },
+        error: function(xhr, type){
+			$('#result').prepend(Date() + ' - Erro ao atualizar<br>')
+        }})
+}
+
+setup = function(){
+	clearInterval(ctrl)
+	update()
+	ctrl = setInterval(update, 60000)
+}
+
 $(document).ready(function(){
 
 	$('#btnClick').click(function(){
-		
-		$.ajax({
-			type: 'GET',
-			url: 'http://www.mercadobitcoin.com.br/api/ticker_litecoin/',
-			success: function(data){
-				var ticket = JSON.parse(data).ticker
-				$('#result').html('<h4>Bitcoin - Preço</h4><b>Último:</b>&nbsp;R$ '+ ticket.last+ '<br><b>Compra:</b>&nbsp;R$ '+ ticket.buy+ '<br><b>Venda:</b>&nbsp;R$ '+ ticket.sell)	
-			},
-			error: function(xhr, type){
-				$('#result').prepend(Date() + ' - Erro ao atualizar<br>')
-			}})
-
+		setup()
 	});
+
+	setup()
 });
 
 </script>
