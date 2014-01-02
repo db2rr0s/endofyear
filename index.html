@@ -33,8 +33,8 @@ update = function(){
         url: 'http://www.mercadobitcoin.com.br/api/ticker_litecoin/',
         success: function(data){
 			var ticket = JSON.parse(data).ticker
-			var dia = Date()
-			dia.getDate() + '/' + (dia.getMonth() + 1) + '/' + dia.getFullYear() + ' ' + dia.getHours() + ':' + dia.getMinutes() + ':' + dia.getSeconds()
+			var dia = new Date()
+			dia = dia.getDate() + '/' + (dia.getMonth() + 1) + '/' + dia.getFullYear() + ' ' + dia.getHours() + ':' + dia.getMinutes() + ':' + dia.getSeconds()
             $('#result').html('<h4>Litecoin - preço em ' + dia + '</h4><b>Último:</b>&nbsp;R$ '+ ticket.last+ '<br><b>Compra:</b>&nbsp;R$ '+ ticket.buy+ '<br><b>Venda:</b>&nbsp;R$ '+ ticket.sell)
         },
         error: function(xhr, type){
