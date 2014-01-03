@@ -7,7 +7,7 @@ doGet = function(url, output){
         var ticket = JSON.parse(data).ticker
         var dia = new Date()
         dia = dia.getDate() + '/' + (dia.getMonth() + 1) + '/' + dia.getFullYear() + ' ' + dia.getHours() + ':' + dia.getMinutes() + ':' + dia.getSeconds()
-        $('#' + output).html('<h4>Preço em ' + dia + '</h4><b>Compra:</b>&nbsp;R$ '+ ticket.buy+ '<br><b>Venda:</b>&nbsp;R$ '+ ticket.sell)
+        $('#' + output).html('<h4>Atualizado em ' + dia + '</h4><b>Compra:</b>&nbsp;R$ '+ ticket.buy+ '<br><b>Venda:</b>&nbsp;R$ '+ ticket.sell)
     },
     error: function(xhr, type){
         var dia = new Date()
