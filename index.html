@@ -1,62 +1,65 @@
+<!DOCTYPE html>
 <html>
-<head>
-<meta charset="iso-8859-1">
-<title>Litecoin - Watch</title>
-<script src="js/zepto.min.js"></script>
+	<head>
+        <title>Litecoin - Watch</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="iso-8859-1">
+        <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="wrap">
+            <div class="container">
+                <div class="page-header">
+                    <img src="img/ltc-logo.png" alt="ltc"/>
+                    <h1>Litecoin</h1>
+                </div>
+                <div>
+                    <button id="btnClick">Atualizar</button>
+                    <br><br>
+                    <div id="error"></div>
+                </div>
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="click" data-toggle="collapse" data-parent="#accordion" href="#collapseLTC">
+                                    Litecoin
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseLTC" class="panel-collapse collapse in">
+                            <div id="ltc-result" class="panel-body">
+                            </div>
+                        </div>
+                    </div>
 
-<style>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="click" data-toggle="collapse" data-parent="#accordion" href="#collapseBTC">
+                                    Bitcoin
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseBTC" class="panel-collapse collapse">
+                            <div id="btc-result" class="panel-body">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-body {
-background-color: #ccc
-}
+        <div id="footer">
+            <div class="container">
+                <p class="text-muted">@dbarros</p>
+            </div>
+        </div>
 
-.label{
-font-size: xx-large;
-}
-
-</style>
-
-</head>
-<body>
-<img src="img/ltc-logo.png" alt="ltc"/>
-<span class="label">Litecoin - Watch</span>
-<span>@dbarros</span><br>
-<button id="btnClick">Atualizar</button>
-<div id="result"></div>
-
-<script>
-
-var ctrl;
-update = function(){
-	$.ajax({
-		type: 'GET',
-        url: 'http://www.mercadobitcoin.com.br/api/ticker_litecoin/',
-        success: function(data){
-			var ticket = JSON.parse(data).ticker
-			var dia = new Date()
-			dia = dia.getDate() + '/' + (dia.getMonth() + 1) + '/' + dia.getFullYear() + ' ' + dia.getHours() + ':' + dia.getMinutes() + ':' + dia.getSeconds()
-            $('#result').html('<h4>Litecoin - preço em ' + dia + '</h4><b>Último:</b>&nbsp;R$ '+ ticket.last+ '<br><b>Compra:</b>&nbsp;R$ '+ ticket.buy+ '<br><b>Venda:</b>&nbsp;R$ '+ ticket.sell)
-        },
-        error: function(xhr, type){
-			$('#result').prepend(Date() + ' - Erro ao atualizar<br>')
-        }})
-}
-
-setup = function(){
-	clearInterval(ctrl)
-	update()
-	ctrl = setInterval(update, 60000)
-}
-
-$(document).ready(function(){
-
-	$('#btnClick').click(function(){
-		setup()
-	});
-
-	setup()
-});
-
-</script>
-</body>
+        <script src="js/jquery.min.js"></script>
+        <script src="dist/js/bootstrap.min.js"></script>
+        
+        <script src="js/script.js"></script>
+    </body>
 </html>
