@@ -10,7 +10,9 @@ doGet = function(url, output){
         $('#' + output).html('<h4>Preço em ' + dia + '</h4><b>Compra:</b>&nbsp;R$ '+ ticket.buy+ '<br><b>Venda:</b>&nbsp;R$ '+ ticket.sell)
     },
     error: function(xhr, type){
-        $('#error').prepend(Date() + ' - Erro ao atualizar<br>')
+        var dia = new Date()
+        dia = dia.getDate() + '/' + (dia.getMonth() + 1) + '/' + dia.getFullYear() + ' ' + dia.getHours() + ':' + dia.getMinutes() + ':' + dia.getSeconds()
+        $('#' + output).html(dia + ' - Erro ao atualizar<br>')
     }})
 }
 
